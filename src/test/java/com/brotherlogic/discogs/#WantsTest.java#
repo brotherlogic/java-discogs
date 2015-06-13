@@ -1,0 +1,21 @@
+package com.brotherlogic.discogs;
+
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class WantsTest {
+
+    @Before
+    public void prepareForTest() {
+	
+    }
+
+    @Test
+    public void testRetrievedWantsListIsCorrectSize() {
+	User u = new User("testuser");
+	List<Release> wants = u.getWants();
+	Assert.assertEquals(wants.size(),44);
+    }
+}
