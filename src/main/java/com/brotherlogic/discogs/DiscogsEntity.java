@@ -13,9 +13,9 @@ public abstract class DiscogsEntity {
 	JsonArray base = object.get(contentIdentifier).getAsJsonArray();
 	JsonObject pagObj = object.get("pagination").getAsJsonObject();
 
-	for(int i = 2 ; i < pagObj.get("pages").getAsInt() ; i++) {
-	    //Ignore this for now
-	}
+	//	for(int i = 2 ; i < pagObj.get("pages").getAsInt() ; i++) {
+	//Ignore this for now
+	//}
 
 	return base;
     }
