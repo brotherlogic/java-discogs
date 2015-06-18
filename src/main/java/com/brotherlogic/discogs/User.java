@@ -31,5 +31,4 @@ public class User extends DiscogsEntity {
 	Type collectionType = new TypeToken<List<Release>>(){}.getType();
 	return new Gson().fromJson(wantsArray,collectionType);
     }
-
 }
