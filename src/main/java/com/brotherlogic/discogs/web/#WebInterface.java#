@@ -1,6 +1,0 @@
-package com.brotherlogic.discogs.web;
-
-
-public interface WebInterface {
-
-}
