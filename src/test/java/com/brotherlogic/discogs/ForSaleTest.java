@@ -9,51 +9,52 @@ import org.junit.Test;
 
 import org.mockito.Mockito;
 
-import com.brotherlogic.discogs.web.CrashingInterface;
-import com.brotherlogic.discogs.web.FileServerInterface;
+import com.brotherlogic.discogs.backend.CrashingRetriever;
+import com.brotherlogic.discogs.backend.FileRetriever;
+import com.brotherlogic.discogs.backend.WebForSaleBackend;
+import com.brotherlogic.discogs.utils.CurrencyConverter;
 
 public class ForSaleTest extends BaseTest {
     @Test
     public void testConditionOrdering() {
-	List<ForSale.Condition> conds = new LinkedList<ForSale.Condition>();
-	conds.add(ForSale.Condition.NM);
-	conds.add(ForSale.Condition.P);
+	List<Condition> conds = new LinkedList<Condition>();
+	conds.add(Condition.NM);
+	conds.add(Condition.P);
 	Collections.sort(conds);
 
-	Assert.assertEquals(ForSale.Condition.NM,conds.get(0));
-	Assert.assertEquals(ForSale.Condition.P,conds.get(1));
+	Assert.assertEquals(Condition.NM,conds.get(0));
+	Assert.assertEquals(Condition.P,conds.get(1));
     }
 
     @Test
-    public void testBadRetrieve() {
-	ForSale sale = new ForSale(145001300);
-        Assert.assertNull(sale.getCondition(new CrashingInterface()));
+    public void testBadRetrieve() {	
+	CurrencyConverter converter = Mockito.mock(CurrencyConverter.class);
+	Mockito.when(converter.getConversionRate("GBP","USD")).thenReturn(1.5874);
+	ForSale sale = new WebForSaleBackend(new CrashingRetriever(),converter).getForSale(145001300);
+        Assert.assertNull(sale);
     }
 
     @Test
     public void testConditionRetrieve() {
-	Assert.assertEquals(ForSale.Condition.M,ForSale.Condition.getCondition("Mint (M)"));
-	Assert.assertEquals(ForSale.Condition.NM,ForSale.Condition.getCondition("Near Mint (NM or M-)"));
-	Assert.assertNull(ForSale.Condition.getCondition("Made up condition"));
+	Assert.assertEquals(Condition.M,Condition.getCondition("Mint (M)"));
+	Assert.assertEquals(Condition.NM,Condition.getCondition("Near Mint (NM or M-)"));
+	Assert.assertNull(Condition.getCondition("Made up condition"));
     }
 
     @Test
     public void testGetSalePrice() {
-	ForSale sale = new ForSale(145001300);
-
 	CurrencyConverter converter = Mockito.mock(CurrencyConverter.class);
 	Mockito.when(converter.getConversionRate("GBP","USD")).thenReturn(1.5874);
-	Assert.assertEquals(new Integer(6349), sale.getPrice(new FileServerInterface(),converter));
-	Assert.assertEquals(sale.getCondition(new FileServerInterface()), ForSale.Condition.NM);
+	ForSale sale = new WebForSaleBackend(new FileRetriever(),converter).getForSale(145001300);
+
+	Assert.assertEquals(new Integer(6349), sale.getPrice().getPriceInDollars());
     }    
 
     @Test
     public void testGetCondition() {
-	ForSale sale = new ForSale(145001300);
-	Assert.assertEquals(sale.getCondition(new FileServerInterface()), ForSale.Condition.NM);
-
 	CurrencyConverter converter = Mockito.mock(CurrencyConverter.class);
 	Mockito.when(converter.getConversionRate("GBP","USD")).thenReturn(1.5874);
-	Assert.assertEquals(new Integer(6349), sale.getPrice(new FileServerInterface(),converter));
+	ForSale sale = new WebForSaleBackend(new FileRetriever(),converter).getForSale(145001300);
+	Assert.assertEquals(sale.getCondition(),Condition.NM);
     }    
 }
