@@ -1,5 +1,6 @@
 package com.brotherlogic.discogs;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,6 +25,14 @@ public class ForSaleTest extends BaseTest {
 
 	Assert.assertEquals(Condition.NM,conds.get(0));
 	Assert.assertEquals(Condition.P,conds.get(1));
+    }
+
+    public void testGetForSale() {
+	Release r = new Release(7131058);
+	CurrencyConverter converter = Mockito.mock(CurrencyConverter.class);
+        Mockito.when(converter.getConversionRate("GBP","USD")).thenReturn(1.5874);
+	Collection<ForSale> forSales = new WebForSaleBackend(new FileRetriever(),converter).listForSale(r);
+	Assert.assertEquals(11,forSales.size());
     }
 
     @Test
