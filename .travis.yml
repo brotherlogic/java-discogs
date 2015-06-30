@@ -1,3 +1,9 @@
 language: java
 
-script: mvn clean verify
+#whitelist
+branches:
+  only:
+    - master
+
+script: 
+ - if [ $TRAVIS_PULL_REQUEST = 'false']; then mvn clean verify deploy; else mvn clean verify; fi
