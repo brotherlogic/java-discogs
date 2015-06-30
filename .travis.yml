@@ -6,4 +6,4 @@ branches:
     - master
 
 script: 
- - if [ $TRAVIS_PULL_REQUEST = 'false']; then mvn clean verify deploy; else mvn clean verify; fi
+ - if [ $TRAVIS_PULL_REQUEST = 'false' ]; then mvn clean verify deploy; else mvn clean verify; fi
