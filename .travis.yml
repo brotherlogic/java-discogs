@@ -1,9 +1,11 @@
 language: java
-
-#whitelist
 branches:
   only:
-    - master
-
-script: 
- - if [ $TRAVIS_PULL_REQUEST = 'false' ]; then mvn clean verify deploy --settings settings.xml; else mvn clean verify; fi
+  - master
+script:
+- if [ $TRAVIS_PULL_REQUEST = 'false' ]; then mvn clean verify deploy --settings settings.xml;
+  else mvn clean verify; fi
+env:
+  global:
+  - secure: bCl3t3bqRM8kmiCXFQ0M7PJfrjLsCDndxWfg4vc5gvEnAiyb31Qscj2jbM2lNoHtHdtz1NGF8atK3m7WmMWuJgT0IE457xiVFSG+coap9jaf2qjDmGxVg/jgvkRf6yB58sN2kCB4fqEY4IklfMZ/E651KZkQ5An8qLJ7Ax51UnifuYRbu3LdwNYxYBSwySNz1nECw9hdRqasCbxLUp/xbEiL0dhbre8kwVynkjLhcUnglvqPIw/jvDWtOFKywpZIH3bMX4fLehvAMnclqzoTJKvmHmSr0QNUqsNTxW/xJDEYN1esSKLQWHy/0E8X+zE1SVdlzDfgYnuCSWJed/oM5HQPLuB+rjz7VZSh5AFAC31GBtDICZiSRca9Gj+sJjvfXXuSn87CtRzFii7YYIXE6ZIyczBlxClO0sA6PkQM6w+7tjUDDXqWgmA3a2c8qTfERYc6Ghtsvx2mgB7IvPUzJD6QRIJE+4hXAbvUZ/+6CCrhv+1KQv+QUwdXE/KnO6v+lWALN02wNqxy9Ut2rcKgiT6jOTVvoNand0BCPpGJAfWFoDDRYfKgH1Kdo1D+FtY0Agr74VsJExUynagiDpm6wrzhV3534YY9jYve66jOogT/syob26VabFbGcUfNLCDjrOkDHdgYkdJ/TO9SfGtDqDOwBkLUi7nmF+b2p7L7hMM=
+  - secure: ZnbVdZKuJGOdTx9RGt5ArCCAM/QUt8Qdtu768LKqJyK3gK8BRKjTuhM4XeM+hr81CSg0P4rSwPBaUJ/p3MZh6JP/+9iF0MSe8X+cuTY5kCSsz2d9a113AsbCuQkZVKtHAZxl0QiTfWf9ZHOr6b3kOS9i0n3fQeBeMgkPDlY34wW/j4lBC0U9DKiuuE6BYBkJEG9efxYkijkiBtPa7SN+28LOfhBN/ekBanOzbSPxOvgasyLloqkp6ynguHHDw2w3QxNybxU1joDKPD85cf17R5847A0sMQzjclRJReV87qi84eteTqOElL92symE0INX2SHLissKLZZiO0oXl3BMe+1gNipn2AhrnkRaukEaV8OVmboHqKlT8/POP6JR4+XXSTMs/dsYarGMRCvPWTOnLSeKKZ8bIs7qa6Tk5DbDWnNi1LjjOWn7FthXwrQI6OhUeA74dJNThBnpsMkshLFR/qh6b+pSPe7zO++MZp8+bK4I6JhU/iBflxcsLge6dUhk2V779uC7VrL48qxpBM8iwRVvA/YKo9bAZ9N3qD1MtyA3KBwltRtAYsm7YsBxyVmHMVo/EkUi0TPwwg2fCuPfOPATXxnc4nFN9xBrG3CgHc5Bh4gSYcnfbbpzLedKpo8PwzGHGWhlxljJ8Pt3i5Uvfr+NNwH6WitZskxYT08YinI=
