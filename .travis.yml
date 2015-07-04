@@ -13,7 +13,7 @@ before_install:
 
 
 script:
-- if [ $TRAVIS_PULL_REQUEST = 'false' ]; then mvn clean verify deploy --settings settings.xml -Dgpg.passphrase=$ENCRYPTION_PASSWORD;
+- if [ $TRAVIS_PULL_REQUEST = 'false' ]; then mvn -X clean verify deploy --settings settings.xml -Dgpg.passphrase=$ENCRYPTION_PASSWORD;
   else mvn clean verify; fi
 
 env:
