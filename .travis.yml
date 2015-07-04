@@ -11,6 +11,7 @@ before_install:
   -d
 - gpg --list-keys
 
+install: mvn install -DskipTests=true -Dgpg.skip=true
 
 script:
 - if [ $TRAVIS_PULL_REQUEST = 'false' ]; then mvn -X clean verify deploy --settings settings.xml -Dgpg.passphrase=$ENCRYPTION_PASSWORD;
