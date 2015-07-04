@@ -9,6 +9,7 @@ before_install:
   -d
 - openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in pubring.gpg.enc -out local.pubring.gpg
   -d
+- apt-get install gpg2
 - gpg2 --list-keys
 
 script:
