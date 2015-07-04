@@ -1,15 +1,20 @@
 language: java
+
 branches:
   only:
   - master
+
 before_install:
 - openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in secring.gpg.enc -out local.secring.gpg
   -d
 - openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in pubring.gpg.enc -out local.pubring.gpg
   -d
+- brew install gpg2
+
 script:
 - if [ $TRAVIS_PULL_REQUEST = 'false' ]; then mvn clean verify deploy --settings settings.xml -Dgpg.passphrase=$ENCRYPTION_PASSWORD;
   else mvn clean verify; fi
+
 env:
   global:
   - secure: bCl3t3bqRM8kmiCXFQ0M7PJfrjLsCDndxWfg4vc5gvEnAiyb31Qscj2jbM2lNoHtHdtz1NGF8atK3m7WmMWuJgT0IE457xiVFSG+coap9jaf2qjDmGxVg/jgvkRf6yB58sN2kCB4fqEY4IklfMZ/E651KZkQ5An8qLJ7Ax51UnifuYRbu3LdwNYxYBSwySNz1nECw9hdRqasCbxLUp/xbEiL0dhbre8kwVynkjLhcUnglvqPIw/jvDWtOFKywpZIH3bMX4fLehvAMnclqzoTJKvmHmSr0QNUqsNTxW/xJDEYN1esSKLQWHy/0E8X+zE1SVdlzDfgYnuCSWJed/oM5HQPLuB+rjz7VZSh5AFAC31GBtDICZiSRca9Gj+sJjvfXXuSn87CtRzFii7YYIXE6ZIyczBlxClO0sA6PkQM6w+7tjUDDXqWgmA3a2c8qTfERYc6Ghtsvx2mgB7IvPUzJD6QRIJE+4hXAbvUZ/+6CCrhv+1KQv+QUwdXE/KnO6v+lWALN02wNqxy9Ut2rcKgiT6jOTVvoNand0BCPpGJAfWFoDDRYfKgH1Kdo1D+FtY0Agr74VsJExUynagiDpm6wrzhV3534YY9jYve66jOogT/syob26VabFbGcUfNLCDjrOkDHdgYkdJ/TO9SfGtDqDOwBkLUi7nmF+b2p7L7hMM=
