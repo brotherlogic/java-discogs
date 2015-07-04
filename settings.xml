@@ -1,6 +1,6 @@
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
   <profiles>
-    <profile>
+<!--    <profile>
       <id>gpg</id>
       <activation>
 	<activeByDefault>true</activeByDefault>
@@ -11,7 +11,7 @@
 	<gpg.secretKeyring>${project.basedir}/local.secring.gpg</gpg.secretKeyring>
 	<gpg.publicKeyring>${project.basedir}/local.pubring.gpg</gpg.publicKeyring>
       </properties>
-    </profile>
+    </profile>-->
   </profiles>
 
   <servers>
