@@ -7,8 +7,8 @@
       </activation>
       <properties>
 	<gpg.useagent>true</gpg.useagent>
-	<gpg.secretKeyring>local.secring.gpg</gpg.secretKeyring>
-	<gpg.publicKeyring>local.pubring.gpg</gpg.publicKeyring>
+	<gpg.secretKeyring>${project.basedir}/local.secring.gpg</gpg.secretKeyring>
+	<gpg.publicKeyring>${project.basedir}/local.pubring.gpg</gpg.publicKeyring>
       </properties>
     </profile>
   </profiles>
