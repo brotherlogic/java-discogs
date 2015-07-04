@@ -8,7 +8,7 @@ before_install:
 - openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in pubring.gpg.enc -out local.pubring.gpg
   -d
 script:
-- if [ $TRAVIS_PULL_REQUEST = 'false' ]; then mvn clean verify deploy --settings settings.xml;
+- if [ $TRAVIS_PULL_REQUEST = 'false' ]; then mvn clean verify deploy --settings settings.xml -Dgpg.passphrase=$ENCRYPTION_PASSWORD;
   else mvn clean verify; fi
 env:
   global:
