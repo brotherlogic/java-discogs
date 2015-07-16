@@ -4,5 +4,5 @@ import com.brotherlogic.discogs.Price;
 import com.brotherlogic.discogs.Release;
 
 public interface PriceBackend {
-    Price getPrice(Release r);
+  Price getPrice(Release rel);
 }

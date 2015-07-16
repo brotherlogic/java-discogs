@@ -1,12 +1,10 @@
 package com.brotherlogic.discogs.backend;
 
-import java.util.Collection;
-
 import com.brotherlogic.discogs.Release;
 import com.brotherlogic.discogs.User;
 
+import java.util.Collection;
+
 public interface WantsBackend {
-
-    Collection<Release> getWants(User user);
-
+  Collection<Release> getWants(User user);
 }

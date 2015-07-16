@@ -4,14 +4,14 @@ import com.brotherlogic.discogs.Release;
 
 public class WebReleaseBackend implements ReleaseBackend{
 
-    URLRetriever retriever;
+  private UrlRetriever retriever;
 
-    public WebReleaseBackend(URLRetriever retr) {
-	retriever = retr;
-    }
+  public WebReleaseBackend(UrlRetriever retr) {
+    retriever = retr;
+  }
 
-    public Release getRelease(long id) {
-	return new Release(id);
-    }
+  public Release getRelease(long id) {
+    return new Release(id);
+  }
 
 }

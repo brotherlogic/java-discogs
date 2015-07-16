@@ -8,7 +8,7 @@ import java.io.IOException;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
-public class FileRetriever implements URLRetriever {
+public class FileRetriever implements UrlRetriever {
 
     private Logger logger = Logger.getLogger(getClass());
 
