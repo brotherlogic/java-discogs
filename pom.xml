@@ -215,6 +215,7 @@
               <failsOnError>true</failsOnError>
               <failsOnValidation>true</failsOnValidation>
               <linkXRef>false</linkXRef>
+              <includeTestSourceDirectory>true</includeTestSourceDirectory>
             </configuration>
             <goals>
               <goal>check</goal>
