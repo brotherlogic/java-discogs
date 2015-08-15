@@ -14,6 +14,7 @@ public class UserTest extends BaseTest {
         UserBackend backend = new WebUserBackend(new FileRetriever());
         User u = backend.getMe();
 
-        Assert.assertEquals("BrotherLogic",u.getUserName());
+        Assert.assertEquals("BrotherLogic", u.getUserName());
+        Assert.assertEquals(new Integer(150295), u.getId());
     }
 }

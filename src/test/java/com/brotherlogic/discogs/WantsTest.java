@@ -11,12 +11,11 @@ import com.brotherlogic.discogs.backend.FileRetriever;
 import com.brotherlogic.discogs.backend.Paginator;
 import com.brotherlogic.discogs.backend.WebWantsBackend;
 
-public class WantsTest {
-
-    @Test
-    public void testRetrievedWantsListIsCorrectSize() throws IOException {
-	User u = new User("testuser");
-	Collection<Release> wants = new WebWantsBackend(new FileRetriever(), new Paginator(new FileRetriever())).getWants(u);
-	Assert.assertEquals(wants.size(),44);
-    }
+public class WantsTest { 
+  @Test
+  public void testRetrievedWantsListIsCorrectSize() throws IOException {
+    User u = new User("testuser", 1234);
+    Collection<Release> wants = new WebWantsBackend(new FileRetriever(), new Paginator(new FileRetriever())).getWants(u);
+    Assert.assertEquals(wants.size(),44);
+  }
 }
