@@ -23,7 +23,8 @@ public class WebUserBackend implements UserBackend {
   public User getMe() {
     try {
       JsonElement user = new JsonParser().parse(retriever.get("oauth/identity"));
-      return new User(user.getAsJsonObject().get("username").getAsString());
+      return new User(user.getAsJsonObject().get("username").getAsString(),
+                      user.getAsJsonObject().get("id").getAsInt());
     } catch (IOException e) {
       logger.log(Level.ERROR,"Cannot retrieve user",e);
     }
